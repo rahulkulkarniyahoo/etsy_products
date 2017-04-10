@@ -7,6 +7,10 @@ import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -175,7 +179,7 @@ public class MainPage extends PageObject{
     }
 
     @Step
-    public void clickAddNewProduct() throws InterruptedException {
+    public void clickAddNewProduct() throws InterruptedException, AWTException {
 
         //Click on Add a Listing
         int ok_size=getDriver().findElements(By.xpath("//a[@title='Add a listing']")).size();
@@ -187,6 +191,63 @@ public class MainPage extends PageObject{
 
         getDriver().findElement(By.xpath("//*[@id='listing-edit-image-upload']")).click();
 
+        String path = "/Users/rahul.kulkarni/Downloads/FireShot/2Promo2Merchant__ReviewAndConfirmOrder.png";
+        File file = new File(path);
+        StringSelection stringSelection= new StringSelection(file.getAbsolutePath());
+
+        //Copy to clipboard
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+        Robot robot = new Robot();
+        // Cmd + Tab is needed since it launches a Java app and the browser looses focus (note: @DD META is the CMD Key in MAC keyboard)
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_TAB);
+        robot.delay(3000);
+
+        //Hit Enter to open window (Choose File is selected)
+        try {
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(4000);
+        }
+        catch(Exception e) {
+            System.out.println(" Am in catch ");
+        }
+
+        //Open Go to the Folder window
+        robot.delay(2000);
+        robot.keyPress(KeyEvent.VK_META); // Press CMD+SHIFT+G - to opens 'Go To The Folder'
+        robot.keyPress(KeyEvent.VK_SHIFT);
+        robot.keyPress(KeyEvent.VK_G);
+        robot.keyRelease(KeyEvent.VK_META); //release CMD+SHIFT+G
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+        robot.keyRelease(KeyEvent.VK_G);
+
+        System.out.println("Did it open go to folder dialog? ");
+        //Paste the clipboard value
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.delay(2000);
+
+        //Press Enter key to close the Goto window and Upload window
+        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then Release - to close the Go To The Folder (note: file is auto-selected)
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.delay(2000);
+        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then release - to close the window
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.delay(2000);
+
+
+
+        waitFor(2).seconds();
+        //Okbutton().click();
 
 
         //Title
