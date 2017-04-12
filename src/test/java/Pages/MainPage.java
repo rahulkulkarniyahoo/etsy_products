@@ -126,12 +126,12 @@ public class MainPage extends PageObject{
 
 
     //Ring Size Options
-    @FindBy(xpath = "//*[@id='//*[@id='theseus-overlay-100137']/div/div[2]/div/div[1]/div[2]/div[1]/label/select']")
+    @FindBy(xpath = "//option[text()='Add ring size options']/..")
     WebElement dd_RingSizeOptions;
 
 
     //SubWindow Update Button
-    @FindBy(xpath = "//*[@id='//*[@id='theseus-overlay-100141']/div/div[3]/div/button[1]")
+    @FindBy(xpath = "//*[text()='Update']")
     WebElement btn_Update;
 
 
@@ -189,65 +189,71 @@ public class MainPage extends PageObject{
         //Add Image
         //*[@id='listing-edit-image-upload']
 
-        getDriver().findElement(By.xpath("//*[@id='listing-edit-image-upload']")).click();
+//        getDriver().findElement(By.xpath("//*[@id='listing-edit-image-upload']")).click();
+//
+//        String path = "/Users/rahul.kulkarni/Downloads/FireShot/2Promo2Merchant__ReviewAndConfirmOrder.png";
+//        File file = new File(path);
+//        StringSelection stringSelection= new StringSelection(file.getAbsolutePath());
+//
+//        //Copy to clipboard
+//        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+//
+//        Robot robot = new Robot();
+//        // Cmd + Tab is needed since it launches a Java app and the browser looses focus (note: @DD META is the CMD Key in MAC keyboard)
+//        robot.keyPress(KeyEvent.VK_META);
+//        robot.keyPress(KeyEvent.VK_TAB);
+//        robot.keyRelease(KeyEvent.VK_META);
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//
+//        robot.delay(3000);
+//
+//        //Hit Enter to open window (Choose File is selected)
+//        try {
+//
+//            robot.keyPress(KeyEvent.VK_ENTER);
+//            robot.keyRelease(KeyEvent.VK_ENTER);
+//            robot.delay(
+//                    4000);
+//        }
+//        catch(Exception e) {
+//            System.out.println(" Am in catch ");
+//        }
+//
+//        //Open Go to the Folder window
+//        robot.delay(2000);
+//        robot.keyPress(KeyEvent.VK_META); // Press CMD+SHIFT+G - to opens 'Go To The Folder'
+//        robot.keyPress(KeyEvent.VK_SHIFT);
+//        robot.keyPress(KeyEvent.VK_G);
+//        robot.keyRelease(KeyEvent.VK_META); //release CMD+SHIFT+G
+//        robot.keyRelease(KeyEvent.VK_SHIFT);
+//        robot.keyRelease(KeyEvent.VK_G);
+//
+//        System.out.println("Did it open go to folder dialog? ");
+//        //Paste the clipboard value
+//        robot.keyPress(KeyEvent.VK_META);
+//        robot.keyPress(KeyEvent.VK_V);
+//        robot.keyRelease(KeyEvent.VK_META);
+//        robot.keyRelease(KeyEvent.VK_V);
+//        robot.delay(2000);
+//
+//        //Press Enter key to close the Goto window and Upload window
+//
+//
+//
+//        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then Release - to close the Go To The Folder (note: file is auto-selected)
+//        robot.keyRelease(KeyEvent.VK_ENTER);
+//        robot.delay(2000);
+//        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then release - to close the window
+//        robot.keyRelease(KeyEvent.VK_ENTER);
+//
+//        robot.keyPress(KeyEvent.VK_ENTER);
+//        robot.keyRelease(KeyEvent.VK_ENTER);
+//        robot.delay(2000);
+//
 
-        String path = "/Users/rahul.kulkarni/Downloads/FireShot/2Promo2Merchant__ReviewAndConfirmOrder.png";
-        File file = new File(path);
-        StringSelection stringSelection= new StringSelection(file.getAbsolutePath());
 
-        //Copy to clipboard
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-
-        Robot robot = new Robot();
-        // Cmd + Tab is needed since it launches a Java app and the browser looses focus (note: @DD META is the CMD Key in MAC keyboard)
-        robot.keyPress(KeyEvent.VK_META);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_META);
-        robot.keyRelease(KeyEvent.VK_TAB);
-        robot.delay(3000);
-
-        //Hit Enter to open window (Choose File is selected)
-        try {
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(4000);
-        }
-        catch(Exception e) {
-            System.out.println(" Am in catch ");
-        }
-
-        //Open Go to the Folder window
-        robot.delay(2000);
-        robot.keyPress(KeyEvent.VK_META); // Press CMD+SHIFT+G - to opens 'Go To The Folder'
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        robot.keyPress(KeyEvent.VK_G);
-        robot.keyRelease(KeyEvent.VK_META); //release CMD+SHIFT+G
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-        robot.keyRelease(KeyEvent.VK_G);
-
-        System.out.println("Did it open go to folder dialog? ");
-        //Paste the clipboard value
-        robot.keyPress(KeyEvent.VK_META);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_META);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.delay(2000);
-
-        //Press Enter key to close the Goto window and Upload window
-        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then Release - to close the Go To The Folder (note: file is auto-selected)
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.delay(2000);
-        robot.keyPress(KeyEvent.VK_ENTER); //Hit Enter then release - to close the window
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.delay(2000);
-
-
-
-        waitFor(2).seconds();
-        //Okbutton().click();
+//        waitFor(2).seconds();
+//        //Okbutton().click();
 
 
         //Title
@@ -357,21 +363,21 @@ public class MainPage extends PageObject{
         je.executeScript("arguments[0].scrollIntoView(true);",btn_Variation);
         btn_Variation.click();
 
-
-
-        //Here we get an alert / window. This code handles the new window.
-        String parentWindowHandler = getDriver().getWindowHandle();
-        String subWindowHandler = null;
-
-        Set<String> handles = getDriver().getWindowHandles();
-        Iterator<String> iterator = handles.iterator();
-        while(iterator.hasNext()){
-            subWindowHandler = iterator.next();
-        }
-
-        getDriver().switchTo().window(subWindowHandler);
-
-
+//        WebDriver popup = null;
+//
+//        //Here we get an alert / window. This code handles the new window.
+//        String parentWindowHandler = getDriver().getWindowHandle();
+//        String subWindowHandler = null;
+//
+//        Set<String> handles = getDriver().getWindowHandles();
+//        Iterator<String> iterator = handles.iterator();
+//        while(iterator.hasNext()){
+//            subWindowHandler = iterator.next();
+//        }
+//
+//
+//        getDriver().switchTo().frame(getDriver().findElement(By.id("theseus-overlay-100103-title")));
+//
 
 
         //Add Ring Size Options
@@ -384,7 +390,10 @@ public class MainPage extends PageObject{
         ddSel.selectByVisibleText("6 1/2 US");
         btn_Update.click();
         Thread.sleep(2000);
-        getDriver().switchTo().window(parentWindowHandler);
+
+       // getDriver().switchTo().defaultContent();
+
+       // getDriver().switchTo().window(parentWindowHandler);
 
         //Origin zip code *
         txt_OriginZipCode.sendKeys("12345");
