@@ -33,7 +33,7 @@ public class LoginPage extends PageObject{
 
     @Step
     public void login() throws InterruptedException {
-        txt_userName.sendKeys("cs@jeenjewels.com");
+        txt_userName.sendKeys("test@test.com");
         txt_password.sendKeys("Jaimatadi0012345234523454");
         loginButton.click();
         Thread.sleep(6000);
