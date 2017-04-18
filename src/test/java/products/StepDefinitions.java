@@ -37,7 +37,9 @@ public class StepDefinitions {
     @When("^I add required values$")
     public void i_add_required_values() throws Throwable {
         System.out.println("i_add_required_values");
-        mainPage.clickAddNewProduct();
+        //mainPage.clickAddNewProduct();
+        mainPage.setData();
+
     }
 
     @Then("^I should be able to add products$")

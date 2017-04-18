@@ -9,8 +9,8 @@
         <module name="etsy_products" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="etsy_products" target="1.5" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="etsy_products" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
