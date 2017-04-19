@@ -3,23 +3,22 @@ package Pages;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
-import net.thucydides.core.annotations.Step;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.*;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.io.*;
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
-//import static Pages.tester.writeToTextFile;
+import static uti.MyWriteToFile.myWriteMethod;
 
 /**
  * Created by rahul.kulkarni on 04/04/2017.
@@ -512,7 +511,6 @@ public class MainPage extends PageObject {
      //   txt_SKU.sendKeys(sSKU);
 
 
-        // ********************************** CODE STOPPED HERE
         //Add Variations
         je.executeScript("arguments[0].scrollIntoView(true);", btn_Variation);
         btn_Variation.click();
@@ -580,8 +578,11 @@ public class MainPage extends PageObject {
             for(WebElement we: myListWE){
                 System.out.println("Adding to individual products=" + mySKUValue +sRingSize +iCounterForSKU);
               //  writeToTextFile(mySKUValue +sRingSize +iCounterForSKU + ",");
-
-                myWrite(mySKUValue +sRingSize +iCounterForSKU );
+                //MyWriteToFile myWriteToFile = new MyWriteToFile();
+                myWriteMethod(mySKUValue);
+                //MyWriteToFile.myWriteMethod(mySKUValue +sRingSize +iCounterForSKU);
+                //myWriteMethod(mySKUValue +sRingSize +iCounterForSKU++);
+               // myWrite(mySKUValue +sRingSize +iCounterForSKU );
                 System.out.println("-------------------------------------------------------------------------");
                 we.sendKeys(mySKUValue +sRingSize +iCounterForSKU++);
                     iRingSize +=5;
@@ -738,49 +739,49 @@ public class MainPage extends PageObject {
         return whatCellType.toString();
 
     }
-    public static void myWrite(String SKUValue){
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-
-        try {
-
-            //String data = " This is new content";
-
-            File file = new File("src/test/resources/SKU.txt");
-
-            // if file doesnt exists, then create it
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            // true = append file
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-
-            bw.write(SKUValue);
-            bw.newLine();
-            System.out.println("Done");
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-            try {
-
-                if (bw != null)
-                    bw.close();
-
-                if (fw != null)
-                    fw.close();
-
-            } catch (IOException ex) {
-
-                ex.printStackTrace();
-
-            }
-        }
-    }
+//    public static void myWrite(String SKUValue){
+//        BufferedWriter bw = null;
+//        FileWriter fw = null;
+//
+//        try {
+//
+//            //String data = " This is new content";
+//
+//            File file = new File("src/test/resources/SKU.txt");
+//
+//            // if file doesnt exists, then create it
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+//
+//            // true = append file
+//            fw = new FileWriter(file.getAbsoluteFile(), true);
+//            bw = new BufferedWriter(fw);
+//
+//            bw.write(SKUValue);
+//            bw.newLine();
+//            System.out.println("Done");
+//
+//        } catch (IOException e) {
+//
+//            e.printStackTrace();
+//
+//        } finally {
+//
+//            try {
+//
+//                if (bw != null)
+//                    bw.close();
+//
+//                if (fw != null)
+//                    fw.close();
+//
+//            } catch (IOException ex) {
+//
+//                ex.printStackTrace();
+//
+//            }
+//        }
+//    }
 
 }

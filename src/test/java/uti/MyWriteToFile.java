@@ -8,9 +8,9 @@ import java.io.IOException;
 /**
  * Created by rahul.kulkarni on 19/04/2017.
  */
-public class WriteToFile {
+public class MyWriteToFile {
 
-    public static void myWrite(String SKUValue){
+    public static void myWriteMethod(String SKUValue){
     BufferedWriter bw = null;
     FileWriter fw = null;
 
@@ -51,7 +51,7 @@ public class WriteToFile {
 
             ex.printStackTrace();
 
+            }
         }
-    }
     }
 }
