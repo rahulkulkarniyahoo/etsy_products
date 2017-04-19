@@ -250,7 +250,7 @@ public class MainPage extends PageObject {
         String[] mySheetValues = new String[sheet1.getRow(0).getLastCellNum()];
 
         //Reading Values
-        for (int i = 3; i < 6; i++) {
+        for (int i = 3; i < 10; i++) {
             for (int j = 0; j < sheet1.getRow(i).getLastCellNum(); j++) {
                 //System.out.println("Row =" + i + " Column = " + j + " Contains value = " + sheet1.getRow(i).getCell(j).getStringCellValue());
                 // mySheetValues[j] = formatter.formatCellValue(sheet1.getRow(i).getCell(j))
@@ -401,7 +401,7 @@ public class MainPage extends PageObject {
 //    @FindBy(xpath = "//input[@id='listing-edit-image-upload']")
         //getDriver().findElement(By.id("listing-edit-image-upload")).sendKeys("C:\\Users\\Rahul\\IdeaProjects\\estyjm\\src\\test\\images\\10_5.jpg")
         //Add Image
-        getDriver().findElement(By.id("listing-edit-image-upload")).sendKeys(sURL1);
+//        getDriver().findElement(By.id("listing-edit-image-upload")).sendKeys(sURL1);
 
         if (!sURL1.equals("-")) {
             getDriver().findElement(By.id("listing-edit-image-upload")).sendKeys(sURL1);
@@ -746,7 +746,7 @@ public class MainPage extends PageObject {
 
             //String data = " This is new content";
 
-            File file = new File("/src/test/resources/SKU.txt");
+            File file = new File("src/test/resources/SKU.txt");
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
