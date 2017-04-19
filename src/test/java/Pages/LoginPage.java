@@ -33,8 +33,11 @@ public class LoginPage extends PageObject{
 
     @Step
     public void login() throws InterruptedException {
-        txt_userName.sendKeys("");
-        txt_password.sendKeys("");
+
+
+
+        txt_userName.sendKeys("cs@jeenjewels.com");
+        txt_password.sendKeys("Jaimatadi001");
         loginButton.click();
         Thread.sleep(6000);
         waitForTitleToAppear("Your Shop - Items");

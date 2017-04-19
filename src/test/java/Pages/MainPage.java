@@ -14,15 +14,12 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static Pages.tester.writeToTextFile;
+//import static Pages.tester.writeToTextFile;
 
 /**
  * Created by rahul.kulkarni on 04/04/2017.
@@ -569,8 +566,8 @@ public class MainPage extends PageObject {
         // sPrice18kRoseGold;
 
 
-
-        if(sheetName.equals("10k Rose Gold")){
+        if(sheetName.contains("10k")){
+       // if(sheetName.equals("10k Rose Gold")){
             int iSKUCounter = 1;
             int iRingSize = 45;
             int i = 1;
@@ -582,7 +579,9 @@ public class MainPage extends PageObject {
 
             for(WebElement we: myListWE){
                 System.out.println("Adding to individual products=" + mySKUValue +sRingSize +iCounterForSKU);
-                writeToTextFile(mySKUValue +sRingSize +iCounterForSKU + ",");
+              //  writeToTextFile(mySKUValue +sRingSize +iCounterForSKU + ",");
+
+                myWrite(mySKUValue +sRingSize +iCounterForSKU );
                 System.out.println("-------------------------------------------------------------------------");
                 we.sendKeys(mySKUValue +sRingSize +iCounterForSKU++);
                     iRingSize +=5;
@@ -602,19 +601,6 @@ public class MainPage extends PageObject {
                 wePrice.sendKeys(sPrice18kRoseGold);
             }
 
-
-//            for (int i=133; i<=165;i++){
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).clear();
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).sendKeys(sPrice10kRoseGold);
-//            }
-//            for (int i=166; i<=198;i++){
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).clear();
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).sendKeys(sPrice14kRoseGold);
-//            }
-//            for (int i=199; i<=231;i++){
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).clear();
-//                getDriver().findElement(By.id("UNIFIED_100" +i+ "_price_field-input")).sendKeys(sPrice18kRoseGold);
-//            }
             System.out.println("-------------------------------------------------------------------------");
         }
 
@@ -650,9 +636,6 @@ public class MainPage extends PageObject {
         waitFor(500);
         //Desc
          txt_Description.sendKeys(sDescription);
-
-
-
 
         System.out.println(" *************** OUT setValuesOnWebApplication ***********************************");
 
@@ -754,6 +737,50 @@ public class MainPage extends PageObject {
        // System.out.println(whatCellType.toString());
         return whatCellType.toString();
 
+    }
+    public static void myWrite(String SKUValue){
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
+        try {
+
+            //String data = " This is new content";
+
+            File file = new File("/src/test/resources/SKU.txt");
+
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // true = append file
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+
+            bw.write(SKUValue);
+            bw.newLine();
+            System.out.println("Done");
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+        }
     }
 
 }
