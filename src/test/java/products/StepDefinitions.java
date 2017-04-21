@@ -18,7 +18,8 @@ public class StepDefinitions {
     @Before
     public void startUp(){
         System.out.println("I started");
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
+        //System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
+       // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         System.out.println(" ********** Setting Property - Done *********");
     }
 
